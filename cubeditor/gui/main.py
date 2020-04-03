@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 import paths
 from config import Config
 from libs import filesTool
@@ -25,9 +26,9 @@ class Main(QMainWindow):
         self.centralFrame = centrallFrame.CentrallFrame("centralFrame")
         self.setCentralWidget(self.centralFrame)
 
-        self.menuBar = mainmenu.MainMenuBar()
-        self.menuBar.setObjectName("menuBar")
-        self.setMenuBar(self.menuBar)
+        # self.menuBar = mainmenu.MainMenuBar()
+        # self.menuBar.setObjectName("menuBar")
+        # self.setMenuBar(self.menuBar)
 
 
 

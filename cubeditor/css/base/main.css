@@ -8,6 +8,10 @@ QGraphicsView#graphicsView {
     background-color: #ffffff;
 }
 
+
+CenterViewFrame {
+    background-color: #828282;
+}
 /*QFrame#main {*/
 
     /*background-image: url("./resource/icons/wood/bg.jpg");*/
