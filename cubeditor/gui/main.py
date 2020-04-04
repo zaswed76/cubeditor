@@ -11,10 +11,16 @@ from libs import filesTool
 from gui import mainmenu
 from gui import centrallFrame
 
-class DockWidget(QDockWidget):
+class InsertToolBar(QToolBar):
     def __init__(self, *__args):
         super().__init__(*__args)
-        pass
+        self.setFixedHeight(42)
+        self.addAction(QAction("img", self))
+
+
+
+
+
 
 
 
@@ -35,8 +41,13 @@ class Main(QMainWindow):
         self.menuBar.setObjectName("menuBar")
         self.setMenuBar(self.menuBar)
 
-        self.addItemsDock = DockWidget("Вставка", self)
-        self.addDockWidget(Qt.RightDockWidgetArea, self.addItemsDock)
+        self.insertToolBar = InsertToolBar()
+        self.insertToolBar.actionTriggered.connect(self.insertToolaction)
+        self.addToolBar(self.insertToolBar)
+
+
+    def insertToolaction(self, action):
+        print(action.text())
 
 
 

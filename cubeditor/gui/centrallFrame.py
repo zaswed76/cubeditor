@@ -14,7 +14,7 @@ class CentrallFrame(customwidgets.ToolTypeFrame):
         super().__init__(name, *args, **kwargs)
 
         self.main = main
-        # self.__initUi()
+        self.__initUi()
 
     def __initUi(self):
         self.box = customwidgets.BoxLayout(QBoxLayout.TopToBottom, self)
