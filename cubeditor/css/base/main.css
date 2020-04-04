@@ -12,6 +12,11 @@ QGraphicsView#graphicsView {
 CenterViewFrame {
     background-color: #828282;
 }
+
+DockWidget {
+    border: 1px solid #505050;
+    background-color: aqua;
+}
 /*QFrame#main {*/
 
     /*background-image: url("./resource/icons/wood/bg.jpg");*/

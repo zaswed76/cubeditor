@@ -11,6 +11,11 @@ from libs import filesTool
 from gui import mainmenu
 from gui import centrallFrame
 
+class DockWidget(QDockWidget):
+    def __init__(self, *__args):
+        super().__init__(*__args)
+        pass
+
 
 
 class Main(QMainWindow):
@@ -23,12 +28,15 @@ class Main(QMainWindow):
         self.__initUi()
 
     def __initUi(self):
-        self.centralFrame = centrallFrame.CentrallFrame("centralFrame")
+        self.centralFrame = centrallFrame.CentrallFrame("centralFrame", self)
         self.setCentralWidget(self.centralFrame)
 
-        # self.menuBar = mainmenu.MainMenuBar()
-        # self.menuBar.setObjectName("menuBar")
-        # self.setMenuBar(self.menuBar)
+        self.menuBar = mainmenu.MainMenuBar()
+        self.menuBar.setObjectName("menuBar")
+        self.setMenuBar(self.menuBar)
+
+        self.addItemsDock = DockWidget("Вставка", self)
+        self.addDockWidget(Qt.RightDockWidgetArea, self.addItemsDock)
 
 
 

@@ -6,37 +6,43 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from gui.glib import customwidgets
 
-class View(QGraphicsView):
-    def __init__(self):
-        super().__init__()
-        self.setDragMode(QGraphicsView.RubberBandDrag)
-        self.scene = QGraphicsScene()
-        self.scene.setBackgroundBrush(Qt.gray)
-        self.setScene(self.scene)
+class Scene(QGraphicsScene):
+    def __init__(self, *__args, **kwargs):
+        super().__init__(*__args)
+        self.model = kwargs.get("model", [])
+        self.setBackgroundBrush(Qt.lightGray)
 
         self.item = QGraphicsRectItem(0, 0, 100, 100)
-        self.scene.addItem(self.item)
-
-        self.item.setFlag(QGraphicsPixmapItem.ItemIsMovable
-                     )
+        self.item.setFlag(QGraphicsPixmapItem.ItemIsMovable)
         self.item.setFlag(QGraphicsPixmapItem.ItemIsSelectable)
 
+    def updateItems(self):
+        for i in self.model:
+            self.addItem(i)
+
+
+class View(QGraphicsView):
+    def __init__(self, main):
+        super().__init__()
+        self.main = main
+        self.setDragMode(QGraphicsView.RubberBandDrag)
 
     def resizeEvent(self, QResizeEvent):
-
         self.setSceneRect(0, 0, QResizeEvent.size().width(), QResizeEvent.size().height())
-        self.ensureVisible(self.item)
-        print(self.sceneRect())
+
+
+
 
 class CenterViewFrame(customwidgets.ToolTypeFrame):
-    def __init__(self, name, *args, **kwargs):
+    def __init__(self, name, main, *args, **kwargs):
+
         super().__init__(name, *args, **kwargs)
+        self.main = main
         self.box = customwidgets.BoxLayout(QBoxLayout.TopToBottom, self)
-
-        self.view = View()
+        self.view = View(self.main)
+        self.scene = Scene()
+        self.view.setScene(self.scene)
         self.box.addWidget(self.view)
-
-
 
 
 if __name__ == '__main__':

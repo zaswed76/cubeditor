@@ -10,10 +10,11 @@ from gui import centerViewFrame
 
 
 class CentrallFrame(customwidgets.ToolTypeFrame):
-    def __init__(self, name, *args, **kwargs):
+    def __init__(self, name, main,  *args, **kwargs):
         super().__init__(name, *args, **kwargs)
 
-        self.__initUi()
+        self.main = main
+        # self.__initUi()
 
     def __initUi(self):
         self.box = customwidgets.BoxLayout(QBoxLayout.TopToBottom, self)
@@ -40,7 +41,7 @@ class CentrallFrame(customwidgets.ToolTypeFrame):
         self.leftFrame.setMaximumWidth(450)
 
 
-        self.centerFrame = centerViewFrame.CenterViewFrame("centerFrame")
+        self.centerFrame = centerViewFrame.CenterViewFrame("centerFrame", self.main)
 
         self.rightFrame = customwidgets.ToolTypeFrame("rightFrame")
         self.rightFrame.setMinimumWidth(28)
