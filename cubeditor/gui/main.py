@@ -24,6 +24,7 @@ class InsertToolBar(QToolBar):
 
 
 
+
 class Main(QMainWindow):
     def __init__(self, config_path, object_name=None):
         super().__init__()
@@ -45,6 +46,13 @@ class Main(QMainWindow):
         self.insertToolBar.actionTriggered.connect(self.insertToolaction)
         self.addToolBar(self.insertToolBar)
 
+        # self.gameToolBar = GameToolBar()
+        # self.insertToolBar.actionTriggered.connect(self.insertToolaction)
+        # self.addToolBar(Qt.RightToolBarArea, self.gameToolBar)
+
+        # self.gameToolBar2 = GameToolBar()
+        #
+        # self.addToolBar(Qt.RightToolBarArea, self.gameToolBar2)
 
     def insertToolaction(self, action):
         print(action.text())
@@ -59,6 +67,12 @@ class Main(QMainWindow):
         css_folder = str(paths.CSS_FOLDER / sheetName)
         styleSheet = filesTool.fileInput(css_folder)
         QApplication.instance().setStyleSheet(styleSheet)
+
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Q:
+            self.insertToolBar.setVisible(not self.insertToolBar.isVisible())
+            self.gameToolBar.setVisible(not self.gameToolBar.isVisible())
 
 
 if __name__ == '__main__':

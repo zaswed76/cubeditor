@@ -35,8 +35,8 @@ class View(QGraphicsView):
 
 class CenterViewFrame(customwidgets.ToolTypeFrame):
     def __init__(self, name, main, *args, **kwargs):
-
         super().__init__(name, *args, **kwargs)
+        self.setFixedSize(800, 800)
         self.main = main
         self.box = customwidgets.BoxLayout(QBoxLayout.TopToBottom, self)
         self.view = View(self.main)

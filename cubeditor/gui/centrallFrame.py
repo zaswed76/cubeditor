@@ -7,7 +7,11 @@ from PyQt5.QtCore import *
 from gui.glib import customwidgets
 from gui import centerViewFrame
 
-
+class GameToolBar(QToolBar):
+    def __init__(self, *__args):
+        super().__init__(*__args)
+        self.setFixedWidth(142)
+        self.addAction(QAction("img", self))
 
 class CentrallFrame(customwidgets.ToolTypeFrame):
     def __init__(self, name, main,  *args, **kwargs):
@@ -17,42 +21,50 @@ class CentrallFrame(customwidgets.ToolTypeFrame):
         self.__initUi()
 
     def __initUi(self):
-        self.box = customwidgets.BoxLayout(QBoxLayout.TopToBottom, self)
-        self.VSplitter = QSplitter(Qt.Vertical)
-        # self.VSplitter.setSizes([2,5,2])
-        self.box.addWidget(self.VSplitter)
-        self.graphicsView = QGraphicsView()
-        self.graphicsView.setObjectName("graphicsView")
-        self.topFrameCentral = customwidgets.ToolTypeFrame("topFrameCentral")
-        self.topFrameCentral.setMinimumHeight(28)
-        self.topFrameCentral.setMaximumHeight(150)
-        self.centralHFrameCentral = customwidgets.ToolTypeFrame("centralHFrameCentral")
-        self.centralHbox = customwidgets.BoxLayout(QBoxLayout.LeftToRight, self.centralHFrameCentral)
-        self.bottomFrameCentral = customwidgets.ToolTypeFrame("bottomFrameCentral")
-        self.bottomFrameCentral.setMinimumHeight(28)
-        self.bottomFrameCentral.setMaximumHeight(150)
-
-        self.VSplitter.addWidget(self.topFrameCentral)
-        self.VSplitter.addWidget(self.centralHFrameCentral)
-        self.VSplitter.addWidget(self.bottomFrameCentral)
-
-        self.leftFrame = customwidgets.ToolTypeFrame("leftFrame")
-        self.leftFrame.setMinimumWidth(28)
-        self.leftFrame.setMaximumWidth(450)
-
-
+        self.box = customwidgets.BoxLayout(QBoxLayout.LeftToRight, self)
         self.centerFrame = centerViewFrame.CenterViewFrame("centerFrame", self.main)
+        self.box.addWidget(self.centerFrame, alignment=Qt.AlignCenter)
 
-        self.rightFrame = customwidgets.ToolTypeFrame("rightFrame")
-        self.rightFrame.setMinimumWidth(28)
-        self.rightFrame.setMaximumWidth(450)
+        self.gameToolBar = GameToolBar()
+        self.box.addWidget(self.gameToolBar)
+        # self.insertToolBar.actionTriggered.connect(self.insertToolaction)
+        # self.addToolBar(Qt.RightToolBarArea, self.gameToolBar)
 
-
-        self.HSplitter = QSplitter(Qt.Horizontal)
-        self.centralHbox.addWidget(self.HSplitter)
-        self.HSplitter.addWidget(self.leftFrame)
-        self.HSplitter.addWidget(self.centerFrame)
-        self.HSplitter.addWidget(self.rightFrame)
+        # self.VSplitter = QSplitter(Qt.Vertical)
+        # # self.VSplitter.setSizes([2,5,2])
+        # self.box.addWidget(self.VSplitter)
+        # self.graphicsView = QGraphicsView()
+        # self.graphicsView.setObjectName("graphicsView")
+        # self.topFrameCentral = customwidgets.ToolTypeFrame("topFrameCentral")
+        # self.topFrameCentral.setMinimumHeight(28)
+        # self.topFrameCentral.setMaximumHeight(150)
+        # self.centralHFrameCentral = customwidgets.ToolTypeFrame("centralHFrameCentral")
+        # self.centralHbox = customwidgets.BoxLayout(QBoxLayout.LeftToRight, self.centralHFrameCentral)
+        # self.bottomFrameCentral = customwidgets.ToolTypeFrame("bottomFrameCentral")
+        # self.bottomFrameCentral.setMinimumHeight(28)
+        # self.bottomFrameCentral.setMaximumHeight(150)
+        #
+        # self.VSplitter.addWidget(self.topFrameCentral)
+        # self.VSplitter.addWidget(self.centralHFrameCentral)
+        # self.VSplitter.addWidget(self.bottomFrameCentral)
+        #
+        # self.leftFrame = customwidgets.ToolTypeFrame("leftFrame")
+        # self.leftFrame.setMinimumWidth(28)
+        # self.leftFrame.setMaximumWidth(450)
+        #
+        #
+        # self.centerFrame = centerViewFrame.CenterViewFrame("centerFrame", self.main)
+        #
+        # self.rightFrame = customwidgets.ToolTypeFrame("rightFrame")
+        # self.rightFrame.setMinimumWidth(28)
+        # self.rightFrame.setMaximumWidth(450)
+        #
+        #
+        # self.HSplitter = QSplitter(Qt.Horizontal)
+        # self.centralHbox.addWidget(self.HSplitter)
+        # self.HSplitter.addWidget(self.leftFrame)
+        # self.HSplitter.addWidget(self.centerFrame)
+        # self.HSplitter.addWidget(self.rightFrame)
 
 
 

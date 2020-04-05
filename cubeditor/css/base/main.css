@@ -17,6 +17,12 @@ DockWidget {
     border: 1px solid #505050;
     background-color: aqua;
 }
+
+GameToolBar {
+    background-color: green;
+    margin-l: 50px;
+}
+
 /*QFrame#main {*/
 
     /*background-image: url("./resource/icons/wood/bg.jpg");*/
